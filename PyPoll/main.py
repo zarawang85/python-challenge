@@ -12,7 +12,6 @@ with open(csvpath, newline='') as csvfile:
     totalvote = 0  # Create a variable to add up total number of votes
     candidate= []  # Create a wordlist to hold candidates' names
     candidate_count = [] # Create a wordlist to hold no. of candidates' votes
-    #count = 0
     
     # Read each row of data after the header  
     for row in election:
