@@ -47,3 +47,14 @@ print("Average  Change: $" +str( "{0:.2f}".format(totalchange/(monthscnt-1))))
 print("Greatest Increase in Profits: " + str(max) + " ($" + str(increase) + ")")
 print("Greatest Decrease in Profits: " + str(min)+ " ($" + str(decrease) + ")")
 
+output_file = os.path.join("output_pybank.csv")
+with open(output_file, "w", newline="") as datafile:
+    writer = csv.writer(datafile)
+    writer.writerow(["Financial Analysis"])
+    writer.writerow(["-------------------------------------------------------------------"])
+    writer.writerow(["Total Months: " + str(monthscnt)])
+    writer.writerow(["Total: $" + str(int(total))])
+    writer.writerow(["Average  Change: $" +str( "{0:.2f}".format(totalchange/(monthscnt-1)))])
+    writer.writerow(["Greatest Increase in Profits: " + str(max) + " ($" + str(increase) + ")"])
+    writer.writerow(["Greatest Decrease in Profits: " + str(min)+ " ($" + str(decrease) + ")"])
+    

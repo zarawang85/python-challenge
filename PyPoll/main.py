@@ -32,6 +32,7 @@ with open(csvpath, newline='') as csvfile:
                 if row[2] == candidate[i]:
                    candidate_count[i] = candidate_count[i] + 1
     
+    result = []
     percentage = ["{0:.3f}".format(number/totalvote*100) + "%" for number in candidate_count]
     print("Election Results")
     print("-------------------------------------------------------------------")
@@ -40,6 +41,7 @@ with open(csvpath, newline='') as csvfile:
     list = zip(candidate,percentage,candidate_count)
     for j in list:
         print(j[0] + ": " + j[1] + " (" +str(j[2]) + ")")
+        result.append(j[0] + ": " + j[1] + " (" +str(j[2]) + ")")
     print("-------------------------------------------------------------------")
     largest = 0
     winner = []
@@ -50,3 +52,17 @@ with open(csvpath, newline='') as csvfile:
            winner = j
     print("Winner: " + winner[0])
     print("-------------------------------------------------------------------")
+
+output_file = os.path.join("output_pypoll.csv")
+with open(output_file, "w", newline="") as datafile:
+    writer = csv.writer(datafile)
+    writer.writerow(["Election Results"])
+    writer.writerow(["-------------------------------------------------------------------"])
+    writer.writerow(["Total Votes: " + str(totalvote)])
+    writer.writerow(["-------------------------------------------------------------------"])
+    for k in result:
+        writer.writerow([k])
+    writer.writerow(["-------------------------------------------------------------------"])
+    writer.writerow(["Winner: " + winner[0]])
+    writer.writerow(["-------------------------------------------------------------------"])
+    
